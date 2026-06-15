@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexiz Omar — Zapier Automation Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0A0A0F;
+    --surface: #111118;
+    --card: #16161F;
+    --border: #1E1E2E;
+    --accent: #7C6BFF;
+    --accent2: #4FFFB0;
+    --text: #E8E8F0;
+    --muted: #6B6B80;
+    --label: #9B9BB0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,107,255,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(79,255,176,0.06) 0%, transparent 70%);
+    top: 30%; right: 10%;
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124,107,255,0.1);
+    border: 1px solid rgba(124,107,255,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .badge::before { content: '⚡'; }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--muted);
+    margin-bottom: 48px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  .divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  .contact-bar {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    font-size: 13px;
+    color: var(--label);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .contact-item span { color: var(--accent2); }
+
+  /* SKILLS */
+  .skills-section {
+    padding: 80px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    color: var(--text);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .skill-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-pill:hover {
+    border-color: rgba(124,107,255,0.4);
+    transform: translateY(-2px);
+  }
+
+  .skill-icon {
+    width: 28px; height: 28px;
+    background: rgba(124,107,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ZAPS */
+  .zaps-section {
+    padding: 80px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .zaps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 560px) {
+    .zaps-grid { grid-template-columns: 1fr; }
+  }
+
+  .zap-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .zap-card:hover {
+    border-color: rgba(124,107,255,0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(124,107,255,0.08);
+  }
+
+  .zap-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .zap-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, rgba(124,107,255,0.2), rgba(79,255,176,0.1));
+    border: 1px solid rgba(124,107,255,0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .zap-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .zap-features {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: rgba(124,107,255,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(124,107,255,0.2);
+    letter-spacing: 0.04em;
+  }
+
+  .tag.green {
+    background: rgba(79,255,176,0.08);
+    color: var(--accent2);
+    border-color: rgba(79,255,176,0.2);
+  }
+
+  .zap-body {
+    padding: 20px 24px;
+  }
+
+  .zap-what {
+    font-size: 13px;
+    color: var(--label);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .zap-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+
+  .zap-row-label {
+    color: var(--muted);
+    font-weight: 500;
+    min-width: 70px;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding-top: 2px;
+  }
+
+  .zap-row-value {
+    color: var(--text);
+    flex: 1;
+  }
+
+  .actions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .actions-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .actions-list li::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .time-saved {
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: rgba(79,255,176,0.05);
+    border: 1px solid rgba(79,255,176,0.12);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--accent2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .time-saved::before { content: '⏱'; }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 24px;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .footer-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124,107,255,0.1);
+    border: 1px solid rgba(124,107,255,0.25);
+    border-radius: 100px;
+    padding: 10px 24px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .footer-email:hover { background: rgba(124,107,255,0.2); }
+
+  hr.section-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Zapier Automation Portfolio</div>
+  <h1>Alexiz<br><span>Omar</span></h1>
+  <p class="hero-sub">Virtual Assistant · Zapier Automation Specialist · Philippines</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">13</div>
+      <div class="stat-label">Live Zaps Built</div>
+    </div>
+    <div class="divider"></div>
+    <div class="stat">
+      <div class="stat-num">30</div>
+      <div class="stat-label">Day Training</div>
+    </div>
+    <div class="divider"></div>
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Hours Saved / Week</div>
+    </div>
+  </div>
+  <div class="contact-bar">
+    <div class="contact-item"><span>✉</span> alexizomar.work@gmail.com</div>
+    <div class="contact-item"><span>📍</span> Philippines · Remote</div>
+    <div class="contact-item"><span>🕐</span> US · UK · AU Time Zones</div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="section-eyebrow">Capabilities</div>
+  <div class="section-title">Skills Demonstrated</div>
+  <div class="skills-grid">
+    <div class="skill-pill"><div class="skill-icon">⚡</div>Trigger & Action Setup</div>
+    <div class="skill-pill"><div class="skill-icon">🔍</div>Filters with AND/OR Logic</div>
+    <div class="skill-pill"><div class="skill-icon">🔗</div>Multi-step Zaps (8+ steps)</div>
+    <div class="skill-pill"><div class="skill-icon">✨</div>Formatter for Data Cleaning</div>
+    <div class="skill-pill"><div class="skill-icon">🔀</div>Paths & Conditional Routing</div>
+    <div class="skill-pill"><div class="skill-icon">⏱</div>Delays & Timed Sequences</div>
+    <div class="skill-pill"><div class="skill-icon">🌐</div>Webhooks for Custom Integrations</div>
+    <div class="skill-pill"><div class="skill-icon">🗄</div>Zapier Tables & Forms</div>
+    <div class="skill-pill"><div class="skill-icon">🔧</div>Testing & Debugging</div>
+    <div class="skill-pill"><div class="skill-icon">📊</div>Google Sheets Integration</div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ZAPS -->
+<section class="zaps-section">
+  <div class="section-eyebrow">Work Samples</div>
+  <div class="section-title">13 Production-Ready Automations</div>
+  <div class="zaps-grid">
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">📋</div>
+        <div>
+          <div class="zap-title">Google Form → Gmail Notification</div>
+          <div class="zap-features"><span class="tag">Filter</span><span class="tag">Gmail</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Automatically notifies you by email whenever someone submits your contact form — so you never miss an inquiry.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Filter — only runs if message contains 'inquiry', 'question', or 'help'</li><li>Send Gmail notification with name, email, and message</li></ul></span></div>
+        <div class="time-saved">Saves 30+ minutes per day — no more manually checking forms</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">📧</div>
+        <div>
+          <div class="zap-title">Gmail → Email Log</div>
+          <div class="zap-features"><span class="tag">Filter</span><span class="tag">Formatter</span><span class="tag">Sheets</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Automatically saves incoming client emails to a Google Sheet — every conversation tracked without manual copy-pasting.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New email in Gmail inbox</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Filter — only logs emails with 'client' in subject</li><li>Formatter — truncates body to 200 characters</li><li>Creates new row in Email Log sheet</li></ul></span></div>
+        <div class="time-saved">Saves 1-2 hours per week — no more manual email tracking</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">✉️</div>
+        <div>
+          <div class="zap-title">Contact Form → Log + Thank You Email</div>
+          <div class="zap-features"><span class="tag">Multi-step</span><span class="tag">Gmail</span><span class="tag">Sheets</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Logs form submissions to Google Sheets AND sends a professional thank you email instantly — every lead feels valued immediately.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Creates new row in Google Sheets</li><li>Sends professional thank you email to submitter</li></ul></span></div>
+        <div class="time-saved">Saves 3-5 hours per week — no more manual logging and replies</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">🎯</div>
+        <div>
+          <div class="zap-title">New Lead → Log + Welcome Email + Notify Me</div>
+          <div class="zap-features"><span class="tag">Multi-step</span><span class="tag">Formatter</span><span class="tag green">3 Actions</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Complete lead management — logs clean formatted data, sends personalized welcome email, and notifies you with an action checklist.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Logs clean data with capitalized name + formatted date</li><li>Sends personalized welcome email to lead</li><li>Sends notification to you with action checklist</li></ul></span></div>
+        <div class="time-saved">Saves 5-7 hours per week — complete automated lead handling</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">📅</div>
+        <div>
+          <div class="zap-title">Calendly Booking → Log + Confirmation Email</div>
+          <div class="zap-features"><span class="tag">Calendly</span><span class="tag">Multi-step</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Logs every Calendly booking to Google Sheets and instantly sends a professional confirmation email — no booking ever goes unacknowledged.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Calendly booking created</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Logs booking details to Booking Log sheet</li><li>Sends professional confirmation email to client</li></ul></span></div>
+        <div class="time-saved">Saves 1-2 hours per day for appointment-based businesses</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">🚀</div>
+        <div>
+          <div class="zap-title">Full Lead Capture System</div>
+          <div class="zap-features"><span class="tag">Filter</span><span class="tag">Formatter</span><span class="tag green">5 Actions</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Production-ready lead system — filters invalid submissions, cleans data, logs to tracker, sends welcome email, and notifies you. Fully automatic.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Filter — blocks invalid email addresses</li><li>Formatter — capitalizes name + formats date</li><li>Logs clean data to Full Lead Capture sheet</li><li>Sends personalized welcome email to lead</li><li>Sends notification with action checklist to you</li></ul></span></div>
+        <div class="time-saved">Saves 5-7 hours per week — complete hands-off lead capture</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">💰</div>
+        <div>
+          <div class="zap-title">Lead Form → Smart Budget Routing</div>
+          <div class="zap-features"><span class="tag">Paths</span><span class="tag">Conditional Logic</span><span class="tag green">3 Paths</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Sends each lead a different email based on their budget — premium pitch for high-budget, starter offer for low-budget. Fully automatic sorting.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Path A — Over $500 → premium services email</li><li>Path B — Under $100 → starter package email</li><li>Path C — $100-$500 → mid-tier recommendation email</li></ul></span></div>
+        <div class="time-saved">Saves 2-3 hours per day — no more manual lead sorting</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">🔀</div>
+        <div>
+          <div class="zap-title">Smart Lead Routing System</div>
+          <div class="zap-features"><span class="tag">Paths</span><span class="tag">Multi-step</span><span class="tag green">6 Actions</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Routes each lead to a personalized email sequence based on the service they're interested in — every lead feels individually handled.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Path A — Zapier Automation → automation email + notify</li><li>Path B — Email & Calendar → admin email + notify</li><li>Path C — Full VA Support → premium email + notify</li></ul></span></div>
+        <div class="time-saved">Saves 3-4 hours per day — intelligent automatic lead routing</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">⏱</div>
+        <div>
+          <div class="zap-title">Form → Welcome + Follow Up Sequence</div>
+          <div class="zap-features"><span class="tag">Delays</span><span class="tag">Multi-step</span><span class="tag green">3-Touch</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Sends an instant welcome email, then automatically follows up twice — 24 hours and 3 days later. No lead ever falls through the cracks.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Sends instant welcome email</li><li>Delays 24 hours → sends follow up email</li><li>Delays 3 days → sends final check-in email</li></ul></span></div>
+        <div class="time-saved">Replaces 3 manual follow ups per lead — runs on autopilot</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">🏆</div>
+        <div>
+          <div class="zap-title">Full Follow Up Automation System</div>
+          <div class="zap-features"><span class="tag">Filter</span><span class="tag">Formatter</span><span class="tag">Paths</span><span class="tag">Delays</span><span class="tag green">8 Steps</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">The most complete automation — filtering, formatting, logging, smart routing, and a full 3-touch follow up sequence. One Zap does it all.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New Google Form submission</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Filter → Formatter (x2) → Log to sheet</li><li>Route to correct path by service type</li><li>Welcome email → Delay → Follow up → Delay → Final email</li><li>Send completion notification to you</li></ul></span></div>
+        <div class="time-saved">Saves 10+ hours per week — replaces entire manual lead process</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">🌐</div>
+        <div>
+          <div class="zap-title">Webhook → Gmail Notification</div>
+          <div class="zap-features"><span class="tag">Webhook</span><span class="tag">Real-time</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Catches data from any external app via webhook and sends an instant Gmail notification — connecting apps that aren't natively on Zapier.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">Webhook receives data from external source</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Catches incoming webhook data instantly</li><li>Sends Gmail notification with all data fields</li></ul></span></div>
+        <div class="time-saved">Connects ANY app to Zapier — no native integration needed</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">📡</div>
+        <div>
+          <div class="zap-title">Webhook → Log + Notify</div>
+          <div class="zap-features"><span class="tag">Webhook</span><span class="tag">Formatter</span><span class="tag">Sheets</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Receives data from any source via webhook, formats it cleanly, logs to Google Sheets, and notifies you — a complete data capture system for any app.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">Webhook receives data from external source</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Catches webhook data in real time</li><li>Formatter — cleans date and time format</li><li>Logs data to Webhook Data Log sheet</li><li>Sends Gmail notification with full details</li></ul></span></div>
+        <div class="time-saved">Automates data capture from any external system</div>
+      </div>
+    </div>
+
+    <div class="zap-card">
+      <div class="zap-header">
+        <div class="zap-icon">🗄</div>
+        <div>
+          <div class="zap-title">Zapier Form → Welcome + Notify</div>
+          <div class="zap-features"><span class="tag">Zapier Tables</span><span class="tag">Zapier Forms</span><span class="tag green">Native</span></div>
+        </div>
+      </div>
+      <div class="zap-body">
+        <div class="zap-what">Professional all-Zapier intake system — form submissions go directly to Lead Database, trigger a welcome email, and notify you instantly. No Google Forms needed.</div>
+        <div class="zap-row"><span class="zap-row-label">Trigger</span><span class="zap-row-value">New record in Zapier Tables Lead Database</span></div>
+        <div class="zap-row"><span class="zap-row-label">Actions</span><span class="zap-row-value"><ul class="actions-list"><li>Sends personalized welcome email to client</li><li>Sends notification with action checklist to you</li></ul></span></div>
+        <div class="time-saved">Saves 2-3 hours per day — professional native Zapier system</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-name">Alexiz L. Omar</div>
+  <div class="footer-sub">Virtual Assistant · Zapier Automation Specialist · Philippines</div>
+  <a href="mailto:alexizomar.work@gmail.com" class="footer-email">✉ alexizomar.work@gmail.com</a>
+</footer>
+
+</body>
+</html>
